@@ -8,6 +8,8 @@ public class Player : MonoBehaviourPunCallbacks
 {
     public string playerName = "Gandalf the Vague";
 
+private Collider collider;
+
     float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
     GameObject cam = null;
@@ -15,7 +17,9 @@ public class Player : MonoBehaviourPunCallbacks
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
     }
+
 
   
 
