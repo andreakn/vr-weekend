@@ -38,17 +38,14 @@ private Collider collider;
         transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
         float mouseY = Input.GetAxis("Mouse Y");
 
-        var scoreboard = GameController.scoreboard;
-        if (scoreboard == null) {
-            Debug.Log("scoreboard is null");
-        }
-        if (scoreboard.photonView == null) {
-            Debug.Log("oh shiiiiiiiiiiiiiiiiiiiiiiiiII");
-        }
+<<<<<<< HEAD
+float mouseX = Input.GetAxis("Mouse X");
+ transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
 
 
+float mouseY = Input.GetAxis("Mouse Y");
+}
 
-        GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
  private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name.Contains("leDwarf")){
@@ -60,4 +57,16 @@ private Collider collider;
 
     }
 
+=======
+        var scoreboard = GameController.scoreboard;
+        if (scoreboard == null) {
+            Debug.Log("scoreboard is null");
+        }
+        if (scoreboard.photonView == null) {
+            Debug.Log("oh shiiiiiiiiiiiiiiiiiiiiiiiiII");
+        }
+
+        GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
+    }
+>>>>>>> f9c779e234527b1fa04ca31825893b40bc8376f8
 }
