@@ -49,7 +49,8 @@ private Collider collider;
 
 
         GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
- private void OnTriggerEnter(Collider other)
+    }
+     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name.Contains("leDwarf")){
             Debug.Log("I hit a dwarf");
