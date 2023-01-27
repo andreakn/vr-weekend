@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     private GameObject scoreboardObj;
 
     void Start() {
-        Debug.Log("GameController instantiated")
+        Debug.Log("GameController instantiated");
         instance = this;
     }
 
