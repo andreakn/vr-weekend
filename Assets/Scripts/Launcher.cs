@@ -8,6 +8,10 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public PhotonView playerPrefab;
 
+    public GameObject dwarfPrefab;
+
+    int r = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,19 +26,51 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+        SpawnHobbit();
+    }
+
     public override void OnJoinedRoom()
     {
         SpawnPlayer();
         Debug.Log("Joined room success");
+
+        SpawnDwarves();
+
         
     }
 
     void SpawnPlayer(){
-         var x = Random.Range(-300,300);
-        var z = Random.Range(-300,300);
+         var x = Random.Range(-1*r,r);
+        var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
 
         PhotonNetwork.Instantiate("Player", new Vector3(x,y,z), Quaternion.identity);
+
+
+    }
+
+       void SpawnHobbit(){
+         var x = Random.Range(-1*r,r);
+        var z = Random.Range(-1*r,r);
+        var y = getHeight(x,z)+1f;
+
+        PhotonNetwork.Instantiate("hobbit", new Vector3(x,y,z), Quaternion.identity);
+        Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
+     
+    }   
+    void SpawnDwarves(){
+        for(int i = 0; i < 300; i++){
+            var x = Random.Range(-1*r,r);
+            var z = Random.Range(-1*r,r);
+            var y = getHeight(x,z)+1f;
+
+            Instantiate(dwarfPrefab ,new Vector3(x,y,z),Quaternion.identity);
+            Debug.Log("Spawned local dwarf @ "+x+" "+y+" "+z+" ");
+        }
+
     }
 
 
