@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class Player : MonoBehaviourPunCallbacks
 {
+    float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,16 @@ public class Player : MonoBehaviourPunCallbacks
             float x = Input.GetAxis("Horizontal") * 10f * Time.deltaTime;
             float z = Input.GetAxis("Vertical") * 10f * Time.deltaTime;
             transform.Translate(x, 0, z);
-            rigidbody.AddRelativeForce(x,0,z, ForceMode.Impulse);
-            
         }
 
 
     }
+
+void Update(){
+    
+
+float mouse = Input.GetAxis("Mouse X");
+ transform.Rotate(new Vector3(0,mouse*turnSpeed,0));
+}
+
 }
