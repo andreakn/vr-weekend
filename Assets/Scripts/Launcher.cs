@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-
     public PhotonView playerPrefab;
 
     public GameObject dwarfPrefab;
@@ -47,19 +46,18 @@ public class Launcher : MonoBehaviourPunCallbacks
         var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
 
-        PhotonNetwork.Instantiate("Player", new Vector3(x,y,z), Quaternion.identity);
-
-
+        var playerObj = PhotonNetwork.Instantiate("Player", new Vector3(x,y,z), Quaternion.identity);
+        var player = playerObj.GetComponent<Player>();
+        assignName(player);
     }
 
-       void SpawnHobbit(){
-         var x = Random.Range(-1*r,r);
+    void SpawnHobbit(){
+        var x = Random.Range(-1*r,r);
         var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
 
         PhotonNetwork.Instantiate("leHobbit", new Vector3(x,y,z), Quaternion.identity);
-       // Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
-     
+        // Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
     }   
     void SpawnDwarves(){
         for(int i = 0; i < 300; i++){
@@ -73,15 +71,33 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     }
 
-
-
-
-      float getHeight(float x, float z){
-       
+    float getHeight(float x, float z){
         Ray ray = new Ray(new Vector3(x,1000,z), Vector3.down);
         if(Physics.Raycast(ray, out var hitData)){
             return 1000 - hitData.distance ;
         }
         return 1000;
+    }
+
+    void assignName(Player player) {
+        // canonical names from LOTR
+        var names = new string[] {
+            "Gandalf the Gray",
+            "Gandalf the White",
+            "Saruman the White",
+            "Radagast the Brown",
+            "Alatar the Blue",
+            "Pallando the Also Bluer",
+            "Fufu the Green",
+            "Jebb the Red",
+            "Frode the Yellow",
+        };
+
+        var index = PhotonNetwork.CountOfPlayers;
+        if (index < names.Length) {
+            player.playerName = names[index];
+        } else {
+            player.playerName = "Pippin the Overflowed";
+        }
     }
 }

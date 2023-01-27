@@ -6,6 +6,8 @@ using Photon.Pun;
 
 public class Player : MonoBehaviourPunCallbacks
 {
+    public string playerName = "Gandalf the Vague";
+
     float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
     GameObject cam = null;
@@ -24,8 +26,6 @@ public class Player : MonoBehaviourPunCallbacks
             float z = Input.GetAxis("Vertical") * 10f * Time.deltaTime;
             transform.Translate(x, 0, z); 
         }
-
-
     }
 
 void Update(){
