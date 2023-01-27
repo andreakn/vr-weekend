@@ -7,7 +7,7 @@ public class SpawnFurniture : MonoBehaviour
     public GameObject[] Trees;
   
 
-int numberOfTrees = 3000;
+int numberOfTrees = 5000;
 
     // Start is called before the first frame update
     void Start()

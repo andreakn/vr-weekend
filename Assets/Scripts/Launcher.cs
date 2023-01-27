@@ -30,15 +30,19 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         base.OnCreatedRoom();
         Debug.Log("Created room " + PhotonNetwork.CurrentRoom.Name);
-        SpawnHobbit();
     }
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
+
+        var room = PhotonNetwork.CurrentRoom;
+        
+
         Debug.Log("Joined room " + PhotonNetwork.CurrentRoom.Name);
         GameController.instance.ConnectedToRoom();
         SpawnPlayer();
+        SpawnHobbit();
         SpawnDwarves();
     }
 
@@ -56,7 +60,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         var y = getHeight(x,z)+1f;
 
         PhotonNetwork.Instantiate("leHobbit", new Vector3(x,y,z), Quaternion.identity);
-        // Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
+        Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
     }   
     void SpawnDwarves(){
         for(int i = 0; i < 300; i++){

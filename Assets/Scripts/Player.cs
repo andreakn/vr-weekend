@@ -9,6 +9,8 @@ public class Player : MonoBehaviourPunCallbacks
     public string playerName = "Gandalf the Vague";
     private Collider collider;
 
+    public int score;
+
     float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
     GameObject cam = null;
@@ -39,8 +41,12 @@ public class Player : MonoBehaviourPunCallbacks
     {
         if(other.gameObject.name.Contains("leDwarf")){
             Debug.Log("I hit a dwarf");
+            score--;
+            GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
         }
         else if(other.gameObject.name.Contains("leHobbit")){
+            score+=100;
+            GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
             Debug.Log("I hit a hobbit");
         }
 
