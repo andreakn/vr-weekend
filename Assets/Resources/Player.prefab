@@ -239,11 +239,10 @@ GameObject:
   - component: {fileID: 8018826150009763763}
   - component: {fileID: 7346567646695698911}
   - component: {fileID: 5985165144307129889}
-  - component: {fileID: 5985165144307129903}
   - component: {fileID: 5985165144307129902}
   - component: {fileID: 7657787916469211573}
   - component: {fileID: 2858886829945944391}
-  - component: {fileID: 3403421780885185160}
+  - component: {fileID: 1464244420485808881}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -296,20 +295,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!64 &5985165144307129903
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8018826150009763765}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &5985165144307129902
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -374,7 +359,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!65 &3403421780885185160
+--- !u!65 &1464244420485808881
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

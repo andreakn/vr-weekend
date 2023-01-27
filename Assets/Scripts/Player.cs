@@ -40,6 +40,17 @@ float mouseX = Input.GetAxis("Mouse X");
 
 
 float mouseY = Input.GetAxis("Mouse Y");
-
 }
+
+ private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name.Contains("leDwarf")){
+            Debug.Log("I hit a dwarf");
+        }
+        else if(other.gameObject.name.Contains("leHobbit")){
+            Debug.Log("I hit a hobbit");
+        }
+
+    }
+
 }

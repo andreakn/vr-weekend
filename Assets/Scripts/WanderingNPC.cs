@@ -17,7 +17,7 @@ public class WanderingNPC: MonoBehaviour {
     
         // If we have walked into the water, turn around
         if (transform.position.y <= 99.5) {
-            Debug.Log("Dwarf fell into the water, respawning");
+            //Debug.Log("Dwarf fell into the water, respawning");
             transform.position = spawnPosition;
         }
 
