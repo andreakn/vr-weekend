@@ -11,6 +11,18 @@ public class Player : MonoBehaviourPunCallbacks
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+
+
+
+    }
+
+    float getHeight(float x, float z){
+        RaycastHit hit;
+        Ray ray = new Ray(new Vector3(x,1000,z), Vector3.down);
+        if(Physics.Raycast(ray, out var hitData)){
+            return 1000 - hitData.distance;
+        }
+        return 1000;
     }
 
     void FixedUpdate()
