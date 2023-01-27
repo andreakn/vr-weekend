@@ -29,19 +29,17 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
-        
+        Debug.Log("Created room " + PhotonNetwork.CurrentRoom.Name);
         SpawnHobbit();
     }
 
     public override void OnJoinedRoom()
     {
-
-
+        base.OnJoinedRoom();
+        Debug.Log("Joined room " + PhotonNetwork.CurrentRoom.Name);
+        GameController.instance.ConnectedToRoom();
         SpawnPlayer();
-        Debug.Log("Joined room success");
-
         SpawnDwarves();
-        
     }
 
     void SpawnPlayer(){
@@ -50,27 +48,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         var y = getHeight(x,z)+1f;
 
         var playerObj = PhotonNetwork.Instantiate("Player", new Vector3(x,y,z), Quaternion.identity);
-        
-        // Assign a name to the player
-        var player = playerObj.GetComponent<Player>();
-        var names = new string[] {
-            "Gandalf the Gray",
-            "Gandalf the White",
-            "Saruman the White",
-            "Radagast the Brown",
-            "Alatar the Blue",
-            "Pallando the Also Bluer",
-            "Fufu the Green",
-            "Jebb the Red",
-            "Frode the Yellow",
-        };
-
-        var index = PhotonNetwork.CountOfPlayers;
-        if (index < names.Length) {
-            player.playerName = names[index];
-        } else {
-            player.playerName = "Pippin the Overflowed";
-        }
     }
 
     void SpawnHobbit(){
@@ -99,5 +76,25 @@ public class Launcher : MonoBehaviourPunCallbacks
             return 1000 - hitData.distance ;
         }
         return 1000;
+    }
+
+    private void AssignNickname() {
+        var names = new string[] {
+            "Gandalf the Gray",
+            "Gandalf the White",
+            "Saruman the White",
+            "Radagast the Brown",
+            "Alatar the Blue",
+            "Pallando the Also Bluer",
+            "Fufu the Green",
+            "Jebb the Red",
+            "Frode the Yellow",
+        };
+        var index = PhotonNetwork.CountOfPlayers;
+        if (index < names.Length) {
+            PhotonNetwork.LocalPlayer.NickName = names[index];
+        } else {
+            PhotonNetwork.LocalPlayer.NickName = "Pippin the Overflowed";
+        }
     }
 }

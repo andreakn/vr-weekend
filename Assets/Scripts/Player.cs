@@ -7,6 +7,7 @@ using Photon.Pun;
 public class Player : MonoBehaviourPunCallbacks
 {
     public string playerName = "Gandalf the Vague";
+    private int score = 0;
 
 private Collider collider;
 
@@ -32,14 +33,19 @@ private Collider collider;
         }
     }
 
-void Update(){
-    
+    void Update(){
+        float mouseX = Input.GetAxis("Mouse X");
+        transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
+        float mouseY = Input.GetAxis("Mouse Y");
 
-float mouseX = Input.GetAxis("Mouse X");
- transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
+        var scoreboard = GameController.scoreboard;
+        if (scoreboard == null) {
+            Debug.Log("scoreboard is null");
+        }
+        if (scoreboard.photonView == null) {
+            Debug.Log("oh shiiiiiiiiiiiiiiiiiiiiiiiiII");
+        }
 
-
-float mouseY = Input.GetAxis("Mouse Y");
-
-}
+        GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, photonView.Owner.ActorNumber, score);
+    }
 }
