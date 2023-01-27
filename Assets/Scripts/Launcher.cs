@@ -9,8 +9,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     public PhotonView playerPrefab;
 
     public GameObject dwarfPrefab;
+    public GameObject hobbitPrefab;
 
-    int r = 10;
+    int r = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined room success");
 
         SpawnDwarves();
-
         
     }
 
@@ -57,8 +57,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
 
-        PhotonNetwork.Instantiate("hobbit", new Vector3(x,y,z), Quaternion.identity);
-        Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
+        PhotonNetwork.Instantiate("leHobbit", new Vector3(x,y,z), Quaternion.identity);
+       // Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
      
     }   
     void SpawnDwarves(){
@@ -67,8 +67,8 @@ public class Launcher : MonoBehaviourPunCallbacks
             var z = Random.Range(-1*r,r);
             var y = getHeight(x,z)+1f;
 
-            Instantiate(dwarfPrefab ,new Vector3(x,y,z),Quaternion.identity);
-            Debug.Log("Spawned local dwarf @ "+x+" "+y+" "+z+" ");
+            Instantiate(hobbitPrefab ,new Vector3(x,y,z),Quaternion.identity);
+            //Debug.Log("Spawned local dwarf @ "+x+" "+y+" "+z+" ");
         }
 
     }
@@ -77,7 +77,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
 
       float getHeight(float x, float z){
-        RaycastHit hit;
+       
         Ray ray = new Ray(new Vector3(x,1000,z), Vector3.down);
         if(Physics.Raycast(ray, out var hitData)){
             return 1000 - hitData.distance ;

@@ -8,6 +8,7 @@ public class Player : MonoBehaviourPunCallbacks
 {
     float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
+    GameObject cam = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +31,12 @@ public class Player : MonoBehaviourPunCallbacks
 void Update(){
     
 
-float mouse = Input.GetAxis("Mouse X");
- transform.Rotate(new Vector3(0,mouse*turnSpeed,0));
+float mouseX = Input.GetAxis("Mouse X");
+ transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
+
+
+float mouseY = Input.GetAxis("Mouse Y");
+
 }
 
 }
