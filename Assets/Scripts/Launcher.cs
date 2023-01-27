@@ -30,11 +30,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
+        
         SpawnHobbit();
     }
 
     public override void OnJoinedRoom()
     {
+
+
         SpawnPlayer();
         Debug.Log("Joined room success");
 
@@ -67,7 +70,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             var z = Random.Range(-1*r,r);
             var y = getHeight(x,z)+1f;
 
-            Instantiate(hobbitPrefab ,new Vector3(x,y,z),Quaternion.identity);
+            Instantiate(dwarfPrefab ,new Vector3(x,y,z),Quaternion.identity);
             //Debug.Log("Spawned local dwarf @ "+x+" "+y+" "+z+" ");
         }
 
