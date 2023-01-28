@@ -16,10 +16,10 @@ public class WanderingNPC: MonoBehaviour {
         transform.position += transform.forward * Time.deltaTime * 2f;
     
         // If we have walked into the water, turn around
-        if (transform.position.y <= 99.5) {
-            //Debug.Log("Dwarf fell into the water, respawning");
-            transform.position = spawnPosition;
-        }
+        // if (transform.position.y <= 99.5) {
+        //     //Debug.Log("Dwarf fell into the water, respawning");
+        //     transform.position = spawnPosition;
+        // }
 
         if (Time.timeSinceLevelLoad > nextTurnTime) {
             SetNewDirection();

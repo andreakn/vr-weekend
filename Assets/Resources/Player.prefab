@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d299fee402ae37d47a3bf4ed4fc25bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationY: 0
 --- !u!1 &6711258209406241827
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Gandalf the Vague
+  cameraHolder: {fileID: 2576639627979332344}
   score: 0
 --- !u!54 &5985165144307129889
 Rigidbody:

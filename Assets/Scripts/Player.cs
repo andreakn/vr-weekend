@@ -8,6 +8,7 @@ public class Player : MonoBehaviourPunCallbacks
 {
     public string playerName = "Gandalf the Vague";
     private Collider collider;
+    public GameObject cameraHolder;
 
     public int score;
 
@@ -32,10 +33,15 @@ public class Player : MonoBehaviourPunCallbacks
     }
 
     void Update(){
-        float mouseX = Input.GetAxis("Mouse X");
-        transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
-        float mouseY = Input.GetAxis("Mouse Y");
-    }
+          if(photonView.IsMine){
+        
+            float mouseX = Input.GetAxis("Mouse X");
+            transform.Rotate(new Vector3(0,mouseX*turnSpeed,0));
+
+            float mouseY = Input.GetAxis("Mouse Y");
+            cameraHolder.GetComponent<CameraHolder>().rotationY = mouseY;
+          }
+          }
 
      private void OnTriggerEnter(Collider other)
     {

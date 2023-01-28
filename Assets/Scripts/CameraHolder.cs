@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraHolder : MonoBehaviour
 {
     float turnSpeed = 4.0f;
+public float rotationY;
 
     // Start is called before the first frame update
     void Start()
@@ -16,8 +17,9 @@ public class CameraHolder : MonoBehaviour
     void Update()
     {
 
-    float mouseY = Input.GetAxis("Mouse Y");        
-    transform.Rotate(new Vector3(-mouseY * turnSpeed,0,0));
+
+     transform.Rotate(new Vector3(-rotationY * turnSpeed,0,0));
+
 
 
     }

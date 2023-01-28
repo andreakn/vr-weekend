@@ -5,9 +5,10 @@ using UnityEngine;
 public class SpawnFurniture : MonoBehaviour
 {
     public GameObject[] Trees;
+    public GameObject[] Houses;
   
 
-int numberOfTrees = 5000;
+int numberOfTrees = 1000;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,21 @@ int numberOfTrees = 5000;
         for(int i = 0; i < numberOfTrees; i++){
             var obj = Trees[i%Trees.Length];
             Instantiate(obj, GetRandomLocation(300), Quaternion.identity);
+            if(i%100 == 0){
+              var house = Houses[0];
+              var location = GetRandomLocation(300);
+              Instantiate(house, location, GetNormalFor(location));
+            }
         }
     }
 
+Quaternion GetNormalFor(Vector3 vector){
+     Ray ray = new Ray(new Vector3(vector.x,1000,vector.z), Vector3.down);
+        if(Physics.Raycast(ray, out var hitData)){
+           return Quaternion.FromToRotation (Vector3.up, hitData.normal);
+        }
+        return Quaternion.identity;
+}
 
 Vector3 GetRandomLocation(float radius){
     var found = false;
