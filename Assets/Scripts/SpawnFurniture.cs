@@ -14,7 +14,6 @@ int numberOfTrees = 2000;
     // Start is called before the first frame update
     void Start()
     {
-        return;
         Random.InitState(100000);
         for(int i = 0; i < numberOfTrees; i++){
             var obj = Trees[i%Trees.Length];
