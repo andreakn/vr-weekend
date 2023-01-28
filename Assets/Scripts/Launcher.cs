@@ -87,16 +87,16 @@ Vector3 GetValidLocation(float radius){
 
     void SpawnPlayer(){
         var validLocation = GetValidLocation(2);
-        
-        var syncPosition = PhotonNetwork.Instantiate("SyncPosition", validLocation, Quaternion.identity);
+        var mod = new Vector3(validLocation.x, validLocation.y+1, validLocation.z);
+        var syncPosition = PhotonNetwork.Instantiate("SyncPosition", mod, Quaternion.identity);
         
         GameObject player;
         if (UnityEngine.XR.XRSettings.enabled) {
             Debug.Log("Instantiating VR player");
-            player = MonoBehaviour.Instantiate(vrPlayerPrefab, validLocation, Quaternion.identity);
+            player = MonoBehaviour.Instantiate(vrPlayerPrefab, mod, Quaternion.identity);
         } else {
             Debug.Log("Instantiating Non-VR player");
-            player = MonoBehaviour.Instantiate(nonVrPlayerPrefab, validLocation, Quaternion.identity);
+            player = MonoBehaviour.Instantiate(nonVrPlayerPrefab, mod, Quaternion.identity);
         }
 
         player.GetComponent<SyncMyPosition>().syncObject = syncPosition;
