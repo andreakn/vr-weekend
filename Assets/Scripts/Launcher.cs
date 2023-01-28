@@ -86,7 +86,7 @@ Vector3 GetValidLocation(float radius){
 }
 
     void SpawnPlayer(){
-        var validLocation = GetValidLocation(10);
+        var validLocation = GetValidLocation(2);
         
         var syncPosition = PhotonNetwork.Instantiate("SyncPosition", validLocation, Quaternion.identity);
         
