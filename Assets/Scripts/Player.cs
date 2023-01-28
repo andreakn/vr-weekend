@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     private Collider collider;
     public GameObject cameraHolder;
 
-    public int score;
-
     float turnSpeed = 4.0f;
     Rigidbody rigidbody = null;
     GameObject cam = null;
@@ -36,18 +34,5 @@ public class Player : MonoBehaviour
 
         float mouseY = Input.GetAxis("Mouse Y");
         cameraHolder.GetComponent<CameraHolder>().rotationY = mouseY;
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.name.Contains("leDwarf")){
-            Debug.Log("I hit a dwarf");
-            score--;
-            GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, score);
-        }
-        else if(other.gameObject.name.Contains("leHobbit")){
-            score+=100;
-            GameController.scoreboard.photonView.RPC("OnPlayerScored", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, score);
-            Debug.Log("I hit a hobbit");
-        }
     }
 }
