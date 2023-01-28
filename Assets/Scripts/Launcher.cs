@@ -63,6 +63,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
     }   
     void SpawnDwarves(){
+        return;
         for(int i = 0; i < 300; i++){
             var x = Random.Range(-1*r,r);
             var z = Random.Range(-1*r,r);

@@ -37,7 +37,7 @@ public class Colorball : MonoBehaviour
         var rd = distance / maxDistance;
         var ird = 1 - rd;
         Debug.Log("palantir color: "+rd);
-        return Color.HSVToRGB(0.75f, 1.0f, ird);
+        return new Color(rd, ird, 0);
     }
 
 
