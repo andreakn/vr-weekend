@@ -9,6 +9,9 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public GameObject dwarfPrefab;
     public GameObject hobbitPrefab;
+    public GameObject vrPlayerPrefab;
+    public GameObject nonVrPlayerPrefab;
+
 
     int r = 200;
 
@@ -42,8 +45,8 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined room " + PhotonNetwork.CurrentRoom.Name);
         GameController.instance.ConnectedToRoom();
         SpawnPlayer();
-        SpawnHobbit();
-        SpawnDwarves();
+        // SpawnHobbit();
+        // SpawnDwarves();
     }
 
     void SpawnPlayer(){
@@ -51,7 +54,18 @@ public class Launcher : MonoBehaviourPunCallbacks
         var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
 
-        var playerObj = PhotonNetwork.Instantiate("Player", new Vector3(x,y,z), Quaternion.identity);
+        var syncPosition = PhotonNetwork.Instantiate("SyncPosition", new Vector3(x,y,z), Quaternion.identity);
+        
+        GameObject player;
+        if (UnityEngine.XR.XRSettings.enabled) {
+            Debug.Log("Instantiating VR player");
+            player = MonoBehaviour.Instantiate(vrPlayerPrefab, new Vector3(x,y,z), Quaternion.identity);
+        } else {
+            Debug.Log("Instantiating Non-VR player");
+            player = MonoBehaviour.Instantiate(nonVrPlayerPrefab, new Vector3(x,y,z), Quaternion.identity);
+        }
+
+        player.GetComponent<SyncMyPosition>().syncObject = syncPosition;
     }
 
     void SpawnHobbit(){

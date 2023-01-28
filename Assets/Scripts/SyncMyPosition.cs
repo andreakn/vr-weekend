@@ -2,20 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncMyPosition : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class SyncMyPosition : MonoBehaviour {
+    public GameObject syncObject;
 
-    public Transform transformToSyncTo;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transformToSyncTo = transform;
+    void Update() {
+        syncObject.transform.position = transform.position;
+        syncObject.transform.rotation = transform.rotation;
     }
 }
