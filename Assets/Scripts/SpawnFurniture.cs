@@ -16,12 +16,14 @@ int numberOfTrees = 1000;
         Random.InitState(100000);
         for(int i = 0; i < numberOfTrees; i++){
             var obj = Trees[i%Trees.Length];
-            Instantiate(obj, GetRandomLocation(300), Quaternion.identity);
+            var validLocation = GetRandomLocation(300);
+            var q = Quaternion.identity;
             if(i%100 == 0){
-              var house = Houses[0];
-              var location = GetRandomLocation(300);
-              Instantiate(house, location, GetNormalFor(location));
+                     obj = Houses[0];
+                     q = GetNormalFor(validLocation);
             }
+             q = GetNormalFor(validLocation);
+            Instantiate(obj, validLocation, q);
         }
     }
 
