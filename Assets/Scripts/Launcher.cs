@@ -67,8 +67,27 @@ Vector3 GetValidLocation(){
     return new Vector3(x,y,z);
 }
 
+Vector3 GetValidLocation(float radius){
+    var found = false;
+    var sanity = 0;
+    float x = 0, y=0, z=0;
+    while(!found && sanity < 100){
+        sanity++;
+         x = Random.Range(-1*radius, radius);
+         z = Random.Range(-1*radius, radius);
+         y = getHeight(x, z);
+        if(y > 101 && y < 300){
+            found = true;
+        }
+    }
+   
+
+    return new Vector3(x,y,z);
+}
+
     void SpawnPlayer(){
-        var validLocation = GetValidLocation();
+        var validLocation = GetValidLocation(10);
+        
         var syncPosition = PhotonNetwork.Instantiate("SyncPosition", validLocation, Quaternion.identity);
         
         GameObject player;
