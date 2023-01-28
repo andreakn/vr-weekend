@@ -9,28 +9,29 @@ public class Colorball : MonoBehaviour
     GameObject bilbo = null;
     void Start()
     {
-        bilbo = GameObject.Find("leHobbit");
-
-        sensor = getChildGameObject(this.gameObject,"BilboSensor");
-       
-        
+            Debug.Log("colorball start");
+        bilbo = GameObject.Find("leHobbit(Clone)");
+        sensor = this.gameObject;               
     }
 
     // Update is called once per frame
     void Update()
     {
+            Debug.Log("colorball update");
         bilbo = bilbo ?? GameObject.Find("leHobbit");
         if(bilbo!=null){
         var distanceToBilbo = Vector3.Distance(bilbo.transform.position, transform.position);
 
         var renderer = sensor.GetComponent<Renderer>();
         renderer.material.SetColor("_Color",CalculateDistanceColor(distanceToBilbo));
+        }else{
+            Debug.Log("could not find bilbo");
         }
        
     }
 
     Color CalculateDistanceColor(float distance){
-        var maxDistance = 300f;
+        var maxDistance = 150f;
         if(distance>maxDistance){
             distance = maxDistance;
         }

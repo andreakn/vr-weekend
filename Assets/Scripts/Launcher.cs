@@ -13,7 +13,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject nonVrPlayerPrefab;
 
 
-    int r = 10;
+    int r = 200;
 
     // Start is called before the first frame update
     void Start()
@@ -49,43 +49,47 @@ public class Launcher : MonoBehaviourPunCallbacks
         SpawnDwarves();
     }
 
-    void SpawnPlayer(){
-         var x = Random.Range(-1*r,r);
-        var z = Random.Range(-1*r,r);
-        var y = getHeight(x,z)+1f;
-        Debug.Log("Spawning player at " + x + " " + y + " " + z + " ");
+Vector3 GetValidLocation(){
+    var found = false;
+    var sanity = 0;
+    float x = 0, y=0, z=0;
+    while(!found && sanity < 100){
+        sanity++;
+         x = Random.Range(-1*r, r);
+         z = Random.Range(-1*r, r);
+         y = getHeight(x, z);
+        if(y > 101 && y < 300){
+            found = true;
+        }
+    }
+   
 
-        var syncPosition = PhotonNetwork.Instantiate("SyncPosition", new Vector3(x,y,z), Quaternion.identity);
+    return new Vector3(x,y,z);
+}
+
+    void SpawnPlayer(){
+        var validLocation = GetValidLocation();
+        var syncPosition = PhotonNetwork.Instantiate("SyncPosition", validLocation, Quaternion.identity);
         
         GameObject player;
         if (UnityEngine.XR.XRSettings.enabled) {
             Debug.Log("Instantiating VR player");
-            player = MonoBehaviour.Instantiate(vrPlayerPrefab, new Vector3(x,y,z), Quaternion.identity);
+            player = MonoBehaviour.Instantiate(vrPlayerPrefab, validLocation, Quaternion.identity);
         } else {
             Debug.Log("Instantiating Non-VR player");
-            player = MonoBehaviour.Instantiate(nonVrPlayerPrefab, new Vector3(x,y,z), Quaternion.identity);
+            player = MonoBehaviour.Instantiate(nonVrPlayerPrefab, validLocation, Quaternion.identity);
         }
 
         player.GetComponent<SyncMyPosition>().syncObject = syncPosition;
     }
 
     void SpawnHobbit(){
-        var x = Random.Range(-1*r,r);
-        var z = Random.Range(-1*r,r);
-        var y = getHeight(x,z)+1f;
-
-        PhotonNetwork.Instantiate("leHobbit", new Vector3(x,y,z), Quaternion.identity);
-        Debug.Log("Spawned hobbit @ "+x+" "+y+" "+z+" ");
-    }   
+        PhotonNetwork.Instantiate("leHobbit", GetValidLocation(), Quaternion.identity);
+    }
     void SpawnDwarves(){
-        return;
         for(int i = 0; i < 300; i++){
-            var x = Random.Range(-1*r,r);
-            var z = Random.Range(-1*r,r);
-            var y = getHeight(x,z)+1f;
-
-            Instantiate(dwarfPrefab ,new Vector3(x,y,z),Quaternion.identity);
-            //Debug.Log("Spawned local dwarf @ "+x+" "+y+" "+z+" ");
+            Instantiate(dwarfPrefab ,GetValidLocation(),Quaternion.identity);
+         
         }
 
     }

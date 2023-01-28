@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * 10f * Time.deltaTime;
         float z = Input.GetAxis("Vertical") * 10f * Time.deltaTime;
         transform.Translate(x, 0, z); 
+
+
+
     }
 
     void Update(){
@@ -34,5 +37,21 @@ public class Player : MonoBehaviour
 
         float mouseY = Input.GetAxis("Mouse Y");
         cameraHolder.GetComponent<CameraHolder>().rotationY = mouseY;
+
+         var height = getHeight(transform.position.x, transform.position.y);
+        var actualHeight = transform.position.y;
+
+        // if((height-actualHeight) > 2){
+        //     transform.SetPositionAndRotation(new Vector3(transform.position.x, height, transform.position.y), Quaternion.identity);
+        // }
+    }
+
+     float getHeight(float x, float z){
+       
+        Ray ray = new Ray(new Vector3(x,1000,z), Vector3.down);
+        if(Physics.Raycast(ray, out var hitData)){
+            return 1000 - hitData.distance ;
+        }
+        return 1000;
     }
 }

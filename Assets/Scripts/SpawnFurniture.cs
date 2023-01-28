@@ -7,9 +7,9 @@ public class SpawnFurniture : MonoBehaviour
     public GameObject[] Trees;
     public GameObject[] Houses;
 
-private int radius = 10;  
+private int radius = 200;  
 
-int numberOfTrees = 1;
+int numberOfTrees = 2000;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,8 @@ int numberOfTrees = 1;
                      q = GetNormalFor(validLocation);
             }
              q = GetNormalFor(validLocation);
-            Instantiate(obj, validLocation, q);
+            var go = Instantiate(obj, validLocation, q);
+            go.layer = 2;
         }
     }
 
