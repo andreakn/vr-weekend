@@ -13,7 +13,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject nonVrPlayerPrefab;
 
 
-    int r = 200;
+    int r = 10;
 
     // Start is called before the first frame update
     void Start()

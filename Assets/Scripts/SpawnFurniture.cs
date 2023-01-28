@@ -6,9 +6,10 @@ public class SpawnFurniture : MonoBehaviour
 {
     public GameObject[] Trees;
     public GameObject[] Houses;
-  
 
-int numberOfTrees = 1000;
+private int radius = 10;  
+
+int numberOfTrees = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ int numberOfTrees = 1000;
         Random.InitState(100000);
         for(int i = 0; i < numberOfTrees; i++){
             var obj = Trees[i%Trees.Length];
-            var validLocation = GetRandomLocation(300);
+            var validLocation = GetRandomLocation(radius);
             var q = Quaternion.identity;
             if(i%100 == 0){
                      obj = Houses[0];
