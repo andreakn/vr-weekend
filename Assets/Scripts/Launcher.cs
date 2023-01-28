@@ -45,14 +45,15 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Joined room " + PhotonNetwork.CurrentRoom.Name);
         GameController.instance.ConnectedToRoom();
         SpawnPlayer();
-        // SpawnHobbit();
-        // SpawnDwarves();
+        SpawnHobbit();
+        SpawnDwarves();
     }
 
     void SpawnPlayer(){
          var x = Random.Range(-1*r,r);
         var z = Random.Range(-1*r,r);
         var y = getHeight(x,z)+1f;
+        Debug.Log("Spawning player at " + x + " " + y + " " + z + " ");
 
         var syncPosition = PhotonNetwork.Instantiate("SyncPosition", new Vector3(x,y,z), Quaternion.identity);
         
