@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7ae4cfeff76fb4516af6e145012f0883, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5d07dd2d5758274889026fe18b7f141, type: 2}
     - target: {fileID: 919132149155446097, guid: 7ae4cfeff76fb4516af6e145012f0883, type: 3}
       propertyPath: m_Name
       value: terrain
@@ -688,6 +692,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: a3acb8a3e5ab6ff4db49b7c35b6c1f10, type: 3}
   - {fileID: 100000, guid: c309f1fdc1ba06e4a849cdd8749eacef, type: 3}
   - {fileID: 100000, guid: a158e0d71b9d28a449578a6a542211cb, type: 3}
+  Houses:
+  - {fileID: 1277323180834837978, guid: 63f595e887adb6c4f963367816dab281, type: 3}
 --- !u!1 &1397160776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ae4cfeff76fb4516af6e145012f0883, type: 3}
